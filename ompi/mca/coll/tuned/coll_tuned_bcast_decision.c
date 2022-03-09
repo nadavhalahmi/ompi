@@ -142,6 +142,8 @@ int ompi_coll_tuned_bcast_intra_do_this(void *buf, int count,
     OPAL_OUTPUT((ompi_coll_tuned_stream,"coll:tuned:bcast_intra_do_this algorithm %d topo faninout %d segsize %d",
                  algorithm, faninout, segsize));
 
+    // printf("in ompi_coll_tuned_bcast_intra_do_this");
+
     switch (algorithm) {
     case (0):
         return ompi_coll_tuned_bcast_intra_dec_fixed( buf, count, dtype, root, comm, module );
