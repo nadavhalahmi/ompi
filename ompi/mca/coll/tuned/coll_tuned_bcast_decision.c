@@ -166,6 +166,10 @@ int ompi_coll_tuned_bcast_intra_do_this(void *buf, int count,
         return ompi_coll_base_bcast_intra_scatter_allgather(buf, count, dtype, root, comm, module, segsize);
     case (9):
         return ompi_coll_base_bcast_intra_scatter_allgather_ring(buf, count, dtype, root, comm, module, segsize);
+    /* my code */
+    case (10):
+        return my_MPI_Bcast(buf, count, dtype, root, comm, NULL); //TODO: what to do with last argument?
+    /* end my code */
     } /* switch */
     OPAL_OUTPUT((ompi_coll_tuned_stream,"coll:tuned:bcast_intra_do_this attempt to select algorithm %d when only 0-%d is valid?",
                  algorithm, ompi_coll_tuned_forced_max_algorithms[BCAST]));

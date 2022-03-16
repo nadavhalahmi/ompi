@@ -1055,3 +1055,34 @@ int ompi_coll_base_bcast_intra_scatter_allgather_ring(
 cleanup_and_return:
     return err;
 }
+
+/* my code */
+int my_MPI_Bcast(void *buf, int count, struct ompi_datatype_t *datatype, int root,
+    struct ompi_communicator_t *comm, mca_coll_base_module_t *module)
+{
+    int rank;
+    MPI_Comm_rank(comm, &rank);
+    int numprocs;
+    MPI_Comm_size(comm, &numprocs);
+
+    if (rank == root)
+    {
+        // If we are the root process, send our data to everyone
+        int i;
+        for (i = 0; i < numprocs; i++)
+        {
+            if (i != rank)
+            {
+                MPI_Send(buf, count, datatype, i, 0, comm);
+            }
+        }
+    }
+    else
+    {
+        // If we are a receiver process, receive the data from the root
+        MPI_Recv(buf, count, datatype, root, 0, comm,
+                 MPI_STATUS_IGNORE);
+    }
+    return 0;
+}
+/* end my code */

@@ -261,6 +261,9 @@ int ompi_coll_tuned_bcast_intra_dec_dynamic(void *buf, int count,
 
     /* Check first if an algorithm is set explicitly for this collective */
     if (tuned_module->user_forced[BCAST].algorithm) {
+        /* my code */
+        // TODO: understand comment above and check how to add my algorithm below
+        /* end my code */
         return ompi_coll_tuned_bcast_intra_do_this(buf, count, dtype,
                                                    root, comm, module,
                                                    tuned_module->user_forced[BCAST].algorithm,
@@ -282,6 +285,9 @@ int ompi_coll_tuned_bcast_intra_dec_dynamic(void *buf, int count,
 
         if (alg) {
             /* we have found a valid choice from the file based rules for this message size */
+            /* my code */
+            // TODO: understand comment above and check how to add my algorithm below
+            /* end my code */
             return ompi_coll_tuned_bcast_intra_do_this (buf, count, dtype, root,
                                                         comm, module,
                                                         alg, faninout, segsize);

@@ -535,8 +535,14 @@ int ompi_coll_tuned_bcast_intra_dec_fixed(void *buff, int count,
      *  {7, "knomial"},
      *  {8, "scatter_allgather"},
      *  {9, "scatter_allgather_ring"},
+     *  {10, "my_bcast"} // my code
      */
-    if (communicator_size < 4) {
+    /* my code */
+    if(true){
+        alg = 10;
+    }
+    /* end my code */
+    else if (communicator_size < 4) {
         if (total_dsize < 32) {
             alg = 3;
         } else if (total_dsize < 256) {
